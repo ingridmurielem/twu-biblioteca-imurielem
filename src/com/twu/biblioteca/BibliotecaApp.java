@@ -1,8 +1,10 @@
 package com.twu.biblioteca;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
+    public static int TESTE (){
+        return 1;
+
     }
 }

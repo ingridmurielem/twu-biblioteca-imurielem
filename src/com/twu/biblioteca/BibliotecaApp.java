@@ -1,10 +1,11 @@
 package com.twu.biblioteca;
-import java.util.Scanner;
 
 public class BibliotecaApp {
+    private static final String MESSAGE = "Welcome Library!";
 
-    public static int TESTE (){
-        return 1;
-
+    public String libraryWelcome(){
+        return MESSAGE;
     }
+
+
 }

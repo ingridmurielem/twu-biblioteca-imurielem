@@ -31,9 +31,18 @@ public class BibliotecaAppTest {
     @Test
     public void shouldTestIfBookDetailsAreComplete ()
     {
-        List<BookDetails> actualBookDetails= app.listBookDetails();
+        List<BookDetails> actualBookDetails= new ArrayList<>();
         List<BookDetails> expectedBookDetails = new ArrayList();
-        expectedBookDetails.add(new BookDetails("Herman Melville",1851));
+        BookDetails book = new BookDetails();
+        book.yearPublished = 1851;
+        book.authorName = "Tom";
+        BookDetails bookExpected = new BookDetails();
+        bookExpected.yearPublished = 1856;
+        bookExpected.authorName = "Jerry";
+        expectedBookDetails.add(book);
+        expectedBookDetails.add(bookExpected);
+        actualBookDetails.add(book);
+        actualBookDetails.add(bookExpected);
         assertEquals(expectedBookDetails, actualBookDetails);
 
     }

@@ -19,6 +19,12 @@ public class BibliotecaApp {
         books.add("A Tale of Two Cities");
         return books;
     }
+    public List<Book> listOfBooksDetails(){
+        List<BookDetails> booksList = new ArrayList<>();
+        booksList.add();
+        return booksList;
+
+    }
 
 
 }

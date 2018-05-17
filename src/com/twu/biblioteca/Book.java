@@ -4,11 +4,20 @@ public class Book {
     public String BookName;
     public BookDetails details;
 
-    public List<BookDetails> listBookDetails() {
+    public String getBookName() {
+        return BookName;
+    }
 
-        List<BookDetails> books = new ArrayList<>();
-        books.add(new BookDetails("Herman Melville",1851));
-        return books;
+    public void setBookName(String bookName) {
+        BookName = bookName;
+    }
 
+    public BookDetails getDetails() {
+        return details;
+    }
+
+    public void setDetails(BookDetails details) {
+        this.details = details;
     }
 }
+

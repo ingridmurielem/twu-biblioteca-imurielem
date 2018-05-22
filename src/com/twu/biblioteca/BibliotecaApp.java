@@ -10,6 +10,7 @@ import java.util.List;
 public class BibliotecaApp {
 
     private static final String MESSAGE = "Welcome Library!";
+    private static final String MESSAGEALERT = "Select a valid option!";
     private BookRepository repository;
 
     public BibliotecaApp(BookRepository repository) {
@@ -20,6 +21,7 @@ public class BibliotecaApp {
         return MESSAGE;
     }
 
+
     public List<String> printBooks (){
         List<Book> books = repository.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
@@ -28,6 +30,11 @@ public class BibliotecaApp {
          }
         return bookNames;
     }
+    public String alertMessage(){
+        return MESSAGEALERT;
+    }
+
+
 
 
 

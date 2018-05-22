@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.repository.BookRepository;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,4 +30,10 @@ public class BibliotecaAppTest {
     }
 
 
+    @Test
+    public void shouldTestAlertMessage() {
+        String invalidOption = app.alertMessage();
+
+        assertEquals("Select a valid option!" , invalidOption);
+    }
 }

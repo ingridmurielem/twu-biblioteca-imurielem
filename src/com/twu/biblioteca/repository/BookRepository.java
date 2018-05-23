@@ -11,8 +11,8 @@ public class BookRepository {
     private List<Book> books;
 
     public BookRepository() {
-        this.books =  Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887),
-                new Book("TDD", "Celso", 2017));
+        this.books =  Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887,0),
+                new Book("TDD", "Celso", 2017,0));
     }
 
     public List<Book> listOfBookDetails() {

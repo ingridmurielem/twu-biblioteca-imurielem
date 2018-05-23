@@ -6,11 +6,31 @@ public class Book {
     private String bookName;
     private String authorName;
     private int yearPublished;
+    private int checkIn;
 
-    public Book(String bookName, String authorName, int yearPublished) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return yearPublished == book.yearPublished &&
+                checkIn == book.checkIn &&
+                Objects.equals(bookName, book.bookName) &&
+                Objects.equals(authorName, book.authorName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(bookName, authorName, yearPublished, checkIn);
+    }
+
+
+    public Book(String bookName, String authorName, int yearPublished, int checkIn) {
         this.bookName = bookName;
         this.authorName = authorName;
         this.yearPublished = yearPublished;
+        this.checkIn = checkIn;
     }
 
     public String getBookName() {
@@ -37,20 +57,9 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
-        return yearPublished == book.yearPublished &&
-                Objects.equals(bookName, book.bookName) &&
-                Objects.equals(authorName, book.authorName);
-    }
+    public int getCheckIn() { return checkIn; }
 
-    @Override
-    public int hashCode() {
+    public void setCheckIn(int checkIn) { this.checkIn = checkIn; }
 
-        return Objects.hash(bookName, authorName, yearPublished);
-    }
 }
 

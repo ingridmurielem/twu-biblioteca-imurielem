@@ -15,7 +15,7 @@ public class LibraryService {
     }
 
 
-    public List<String> printBooks() {
+    public List<String> listNameBooks() {
         List<Book> books = repository.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
         for (Book book : books) {
@@ -24,4 +24,11 @@ public class LibraryService {
         return bookNames;
 
     }
+    public void printNameBooks() {
+        List<String> books = listNameBooks();
+        for (String name: books) {
+            System.out.println("Book Name: " + name);
+        }
+    }
+
 }

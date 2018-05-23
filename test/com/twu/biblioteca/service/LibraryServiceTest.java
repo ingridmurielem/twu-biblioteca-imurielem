@@ -1,9 +1,11 @@
 package com.twu.biblioteca.service;
 
+import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.repository.BookRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,10 +21,11 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldTestPrintNameBooks(){
-        List<String> bookList= service.printBooks();
-        List<String> expectedBookList = Arrays.asList("Moby-Dick","TDD");
-        assertEquals(expectedBookList,bookList);
-
+    public void shouldTestListBooksitCorrect (){
+        List<String> actualBooks = service.listNameBooks();
+        List<String> expectedBooks = Arrays.asList("Moby-Dick","TDD");
+        assertEquals(expectedBooks, actualBooks);
     }
+
+
 }

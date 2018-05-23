@@ -8,17 +8,32 @@ public class BibliotecaApp {
 
     private static final String MESSAGE = "Welcome Library!";
     private static final String MESSAGEALERT = "Select a valid option!";
+    private static final String MESSAGECHEKOUTSUCESS = "Thank you! Enjoy the book";
+
 
 
     public static void main(String[] args) {
-        menuOptions();
+        LibraryService service = new LibraryService(new BookRepository());
         int option;
         Scanner input = new Scanner(System.in);
-        option=input.nextInt();
-        LibraryService service = new LibraryService(new BookRepository());
-      //  for (String name: service.printBooks()) {System.out.println("Book Name: " + name);}
+        do {
+            menuOptions();
+            option = input.nextInt();
+            switch (option){
+            case 1:
+                 service.printNameBooks();
+
+                break;
+            case 2:
+                break;
+            default:
+                System.out.println(MESSAGEALERT);
+                break;
+        }}while (option != 2);
+
     }
     public static void menuOptions () {
+
         System.out.println("                    " +MESSAGE +"                 \n ");
         System.out.println("                  ==========================");
         System.out.println("                  |     1 - List Books      |");
@@ -27,5 +42,6 @@ public class BibliotecaApp {
         System.out.println("                  =========================\n");
 
     }
+
 
 }

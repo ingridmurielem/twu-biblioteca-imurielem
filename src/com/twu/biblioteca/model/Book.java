@@ -6,7 +6,7 @@ public class Book {
     private String bookName;
     private String authorName;
     private int yearPublished;
-    private int checkIn;
+    private String checkIn;
 
     @Override
     public boolean equals(Object o) {
@@ -26,7 +26,7 @@ public class Book {
     }
 
 
-    public Book(String bookName, String authorName, int yearPublished, int checkIn) {
+    public Book(String bookName, String authorName, int yearPublished, String checkIn) {
         this.bookName = bookName;
         this.authorName = authorName;
         this.yearPublished = yearPublished;
@@ -57,9 +57,9 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    public int getCheckIn() { return checkIn; }
+    public String getCheckIn() { return checkIn; }
 
-    public void setCheckIn(int checkIn) { this.checkIn = checkIn; }
+    public void setCheckIn(String checkIn) { this.checkIn = checkIn; }
 
 }
 

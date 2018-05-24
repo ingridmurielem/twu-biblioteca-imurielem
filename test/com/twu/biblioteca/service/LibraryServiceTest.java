@@ -21,11 +21,19 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldTestListBooksitCorrect (){
-        List<String> actualBooks = service.listNameBooks();
-        List<String> expectedBooks = Arrays.asList("Moby-Dick","TDD");
-        assertEquals(expectedBooks, actualBooks);
+    public void shouldTestAvalaibelBooks(){
+        List<String> actualBooks = service.listAvalaibleBooks();
+        List<String> expetedBooks = Arrays.asList("Moby-Dick");
+        assertEquals(expetedBooks,actualBooks);
+
     }
+    @Test
+    public void shouldReturnTruorFalse(){
+        String actual = service.checkIn("Maria");
+        String expected = "Thank you! Enjoy the book";
+        assertEquals(expected,actual);
+    }
+
 
 
 }

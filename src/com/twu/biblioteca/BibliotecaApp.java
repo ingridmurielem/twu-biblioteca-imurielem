@@ -8,28 +8,38 @@ public class BibliotecaApp {
 
     private static final String MESSAGE = "Welcome Library!";
     private static final String MESSAGEALERT = "Select a valid option!";
-    private static final String MESSAGECHEKOUTSUCESS = "Thank you! Enjoy the book";
 
 
 
     public static void main(String[] args) {
         LibraryService service = new LibraryService(new BookRepository());
         int option;
+        String selectBook;
         Scanner input = new Scanner(System.in);
+        Scanner input2= new Scanner(System.in);
+
         do {
             menuOptions();
             option = input.nextInt();
             switch (option){
-            case 1:
-                 service.printNameBooks();
+                case 1:
+                    service.printNameBooks();
+                    break;
 
-                break;
-            case 2:
-                break;
-            default:
-                System.out.println(MESSAGEALERT);
-                break;
-        }}while (option != 2);
+                case 2:
+                    service.printNameBooks();
+                    selectBook =  input2.nextLine();
+                    System.out.println(service.checkIn(selectBook));
+                    break;
+                case 3:
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println(MESSAGEALERT);
+                    break;
+
+        }}while (option != 5);
 
     }
     public static void menuOptions () {
@@ -37,7 +47,9 @@ public class BibliotecaApp {
         System.out.println("                    " +MESSAGE +"                 \n ");
         System.out.println("                  ==========================");
         System.out.println("                  |     1 - List Books      |");
-        System.out.println("                  |     2 - Quit            |");
+        System.out.println("                  |     2 - Check In        |");
+        System.out.println("                  |     3- Return Book      |");
+        System.out.println("                  |     5 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
 

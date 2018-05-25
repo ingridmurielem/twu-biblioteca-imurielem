@@ -32,14 +32,17 @@ public class BibliotecaApp {
                     System.out.println(service.checkIn(selectBook));
                     break;
                 case 3:
+                    input2 = new Scanner(System.in);
+                        selectBook =  input2.nextLine();
+                        System.out.println(service.checkOut(selectBook));
                     break;
-                case 5:
+                case 4:
                     break;
                 default:
                     System.out.println(MESSAGEALERT);
                     break;
 
-        }}while (option != 5);
+        }}while (option != 4);
 
     }
     public static void menuOptions () {
@@ -49,7 +52,7 @@ public class BibliotecaApp {
         System.out.println("                  |     1 - List Books      |");
         System.out.println("                  |     2 - Check In        |");
         System.out.println("                  |     3- Return Book      |");
-        System.out.println("                  |     5 - Quit            |");
+        System.out.println("                  |     4 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
 

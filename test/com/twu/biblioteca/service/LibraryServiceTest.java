@@ -28,9 +28,15 @@ public class LibraryServiceTest {
 
     }
     @Test
-    public void shouldReturnTruorFalse(){
+    public void shouldTestCheckinReturnMessage(){
         String actual = service.checkIn("Maria");
         String expected = "Thank you! Enjoy the book";
+        assertEquals(expected,actual);
+    }
+    @Test
+    public void checkOutTest(){
+        String actual = service.checkOut("Moby-Dick");
+        String expected = "Thank you for returning the book.";
         assertEquals(expected,actual);
     }
 

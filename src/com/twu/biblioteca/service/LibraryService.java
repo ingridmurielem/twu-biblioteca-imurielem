@@ -50,7 +50,18 @@ public class LibraryService {
     }
     public String checkOut(String nameBook){
         List<Book>books = repository.listOfBookDetails();
-        
+        for (Book book: books){
+            if (book.getBookName().equals(nameBook)) {
+                if (book.getCheckIn().equals("No")) {
+                    book.setCheckIn("Yes");
+                    return "Thank you for returning the book.";
+                }else{
+                    return "That is not a valid book to return.";
+                }
+
+            }
+        }
+        return "That is not a valid book to return.";
     }
 
 

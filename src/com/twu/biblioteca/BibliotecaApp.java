@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.repository.BookRepository;
+import com.twu.biblioteca.repository.MovieRepository;
 import com.twu.biblioteca.service.LibraryService;
 import java.util.Scanner;
 
@@ -12,7 +13,8 @@ public class BibliotecaApp {
 
 
     public static void main(String[] args) {
-        LibraryService service = new LibraryService(new BookRepository());
+        LibraryService service = new LibraryService(new BookRepository(), new MovieRepository());
+
         int option;
         String selectBook;
         Scanner input = new Scanner(System.in);
@@ -24,27 +26,29 @@ public class BibliotecaApp {
                 case 1:
                     service.printNameBooks();
                     break;
-
                 case 2:
-                    service.printNameBooks();
-                    System.out.println("Name Book:");
-                    input = new Scanner(System.in);
-                    selectBook =  input.nextLine();
-                    System.out.println(service.checkIn(selectBook));
+                    service.printNameMovies();
                     break;
                 case 3:
+                    service.printAvalaibleBooks();
                     System.out.println("Name Book:");
                     input = new Scanner(System.in);
                     selectBook =  input.nextLine();
-                    System.out.println(service.checkOut(selectBook));
+                    System.out.println(service.checkInBook(selectBook));
                     break;
                 case 4:
+                    System.out.println("Name Book:");
+                    input = new Scanner(System.in);
+                    selectBook =  input.nextLine();
+                    System.out.println(service.checkOutBook(selectBook));
+                    break;
+                case 5:
                     break;
                 default:
                     System.out.println(MESSAGEALERT);
                     break;
 
-        }}while (option != 4);
+        }}while (option != 5);
 
     }
     public static void menuOptions () {
@@ -52,9 +56,10 @@ public class BibliotecaApp {
         System.out.println("                    " +MESSAGE +"                 \n ");
         System.out.println("                  ==========================");
         System.out.println("                  |     1 - List Books      |");
-        System.out.println("                  |     2 - Check In        |");
-        System.out.println("                  |     3- Return Book      |");
-        System.out.println("                  |     4 - Quit            |");
+        System.out.println("                  |     2 - List Movies     |");
+        System.out.println("                  |     3 - Check In Book   |");
+        System.out.println("                  |     4- Return Book      |");
+        System.out.println("                  |     5 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
 

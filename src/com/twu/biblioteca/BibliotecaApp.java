@@ -16,7 +16,6 @@ public class BibliotecaApp {
         int option;
         String selectBook;
         Scanner input = new Scanner(System.in);
-        Scanner input2= new Scanner(System.in);
 
         do {
             menuOptions();
@@ -28,13 +27,16 @@ public class BibliotecaApp {
 
                 case 2:
                     service.printNameBooks();
-                    selectBook =  input2.nextLine();
+                    System.out.println("Name Book:");
+                    input = new Scanner(System.in);
+                    selectBook =  input.nextLine();
                     System.out.println(service.checkIn(selectBook));
                     break;
                 case 3:
-                    input2 = new Scanner(System.in);
-                        selectBook =  input2.nextLine();
-                        System.out.println(service.checkOut(selectBook));
+                    System.out.println("Name Book:");
+                    input = new Scanner(System.in);
+                    selectBook =  input.nextLine();
+                    System.out.println(service.checkOut(selectBook));
                     break;
                 case 4:
                     break;

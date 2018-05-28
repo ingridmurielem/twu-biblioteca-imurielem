@@ -22,7 +22,7 @@ public class LibraryService {
         List<Book> books = repository.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
         for (Book book : books) {
-            if (book.getCheckIn().equals("No")){
+            if (book.getCheckIn().equals("Not Available")){
                 bookNames.add(book.getBookName());
             }}
         return bookNames;
@@ -38,10 +38,10 @@ public class LibraryService {
         List<Book>books = repository.listOfBookDetails();
         for (Book book : books){
             if (book.getBookName().equals(nameBook)) {
-                if (book.getCheckIn().equals("No")) {
+                if (book.getCheckIn().equals("Not Available")) {
                     return MESSAGECHEKOUTUNSUCESS;
                 } else {
-                    book.setCheckIn("No");
+                    book.setCheckIn("Available");
                     return MESSAGECHEKOUTSUCESS;
                 }
             }}
@@ -52,8 +52,8 @@ public class LibraryService {
         List<Book>books = repository.listOfBookDetails();
         for (Book book: books){
             if (book.getBookName().equals(nameBook)) {
-                if (book.getCheckIn().equals("No")) {
-                    book.setCheckIn("Yes");
+                if (book.getCheckIn().equals("Not Available")) {
+                    book.setCheckIn("Available");
                     return "Thank you for returning the book.";
                 }else{
                     return "That is not a valid book to return.";

@@ -15,9 +15,9 @@ public class MovieRepositoryTest {
     @Test
     public void shoulTestTheListMovie (){
         List<Movie> actualMovies = repository.listMovies();
-        List<Movie> expectedMovies = Arrays.asList(new Movie("João",2008,"Machado",9),
-                new Movie("Star Wars: The Clone Wars",2008,"Daniel", 10),
-                new Movie("Lagom",2009,"David", 23));
+        List<Movie> expectedMovies = Arrays.asList(new Movie("João",2008,"Machado",9,true),
+                new Movie("Star Wars: The Clone Wars",2008,"Daniel", 10,true),
+                new Movie("Lagom",2009,"David", 23,true));
         assertEquals(expectedMovies, actualMovies);
 
     }

@@ -83,5 +83,19 @@ public class LibraryService {
     }
 
 
+    public String checkInMovie(String nameMovie) {
+        List<Movie> movies = repositoryMovie.listMovies();
+        for(Movie movie: movies){
+            if(movie.getMovieName().equals(nameMovie)){
+                if(movie.getAvailable().equals(false)){
+                    return "Not Available";
+                }else{
+                    movie.setAvailable(false);
+                    return "Have a good movie!";
+                }
 
+            }
+        }
+        return "Not exist the movie";
+    }
 }

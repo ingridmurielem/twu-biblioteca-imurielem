@@ -17,6 +17,7 @@ public class BibliotecaApp {
 
         int option;
         String selectBook;
+        String selectMovie;
         Scanner input = new Scanner(System.in);
 
         do {
@@ -43,6 +44,11 @@ public class BibliotecaApp {
                     System.out.println(service.checkOutBook(selectBook));
                     break;
                 case 5:
+                    System.out.println("Name Movie:");
+                    input = new Scanner(System.in);
+                    selectMovie =  input.nextLine();
+                    System.out.println(service.checkInMovie(selectMovie));
+                case 6:
                     break;
                 default:
                     System.out.println(MESSAGEALERT);
@@ -58,8 +64,9 @@ public class BibliotecaApp {
         System.out.println("                  |     1 - List Books      |");
         System.out.println("                  |     2 - List Movies     |");
         System.out.println("                  |     3 - Check In Book   |");
-        System.out.println("                  |     4- Return Book      |");
-        System.out.println("                  |     5 - Quit            |");
+        System.out.println("                  |     4 - Return Book     |");
+        System.out.println("                  |     5 - Check In Movie  |");
+        System.out.println("                  |     6 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
 

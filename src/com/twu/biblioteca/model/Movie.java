@@ -7,6 +7,7 @@ public class Movie {
     private int year;
     private String directorName;
     private int movieRating;
+    private Boolean available;
 
     @Override
     public boolean equals(Object o) {
@@ -19,17 +20,29 @@ public class Movie {
                 Objects.equals(movieRating, movie.movieRating);
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
     @Override
+
     public int hashCode() {
 
         return Objects.hash(movieName, year, directorName, movieRating);
     }
 
-    public Movie(String movieName, int year, String directorName, int movieRating) {
+
+
+    public Movie(String movieName, int year, String directorName, int movieRating, Boolean available) {
         this.movieName = movieName;
         this.year = year;
         this.directorName = directorName;
         this.movieRating = movieRating;
+        this.available= available;
     }
 
     public String getMovieName() {

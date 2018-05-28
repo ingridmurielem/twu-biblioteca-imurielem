@@ -29,7 +29,7 @@ public class LibraryServiceTest {
 
     }
     @Test
-    public void shouldTestCheckinReturnMessage(){
+    public void shouldTestCheckinBookReturnMessage(){
         String actual = service.checkInBook("TDD");
         String expected = "Thank you! Enjoy the book";
         assertEquals(expected,actual);
@@ -51,8 +51,12 @@ public class LibraryServiceTest {
         assertEquals(expected,actual);
     }
 
-
-
+    @Test
+    public void shouldTestCheckinMovieReturnCorrectMessage(){
+        String actual = service.checkInMovie("João");
+        String expected = "Have a good movie!";
+        assertEquals(expected,actual);
+    }
 
 
 

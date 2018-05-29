@@ -8,29 +8,30 @@ public class Book {
     private int yearPublished;
     private String checkIn;
 
+    public Book(String bookName, String authorName, int yearPublished, String checkIn) {
+        this.bookName =bookName;
+        this.authorName = authorName;
+        this.yearPublished = yearPublished;
+        this.checkIn = checkIn;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return yearPublished == book.yearPublished &&
-                checkIn == book.checkIn &&
                 Objects.equals(bookName, book.bookName) &&
-                Objects.equals(authorName, book.authorName);
+                Objects.equals(authorName, book.authorName) &&
+                Objects.equals(checkIn, book.checkIn);
+
     }
 
     @Override
     public int hashCode() {
 
         return Objects.hash(bookName, authorName, yearPublished, checkIn);
-    }
-
-
-    public Book(String bookName, String authorName, int yearPublished, String checkIn) {
-        this.bookName = bookName;
-        this.authorName = authorName;
-        this.yearPublished = yearPublished;
-        this.checkIn = checkIn;
     }
 
     public String getBookName() {
@@ -60,6 +61,7 @@ public class Book {
     public String getCheckIn() { return checkIn; }
 
     public void setCheckIn(String checkIn) { this.checkIn = checkIn; }
+
 
 }
 

@@ -1,0 +1,17 @@
+package com.twu.biblioteca.repository;
+
+import com.twu.biblioteca.model.User;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class UserRepository {
+
+    private List<User> users;
+
+    public UserRepository() {
+
+        this.users = Arrays.asList(new("Maria","maria@prov.com",99999999,"999-4444",9987));
+    }
+}

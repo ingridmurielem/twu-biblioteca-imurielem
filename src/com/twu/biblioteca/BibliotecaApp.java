@@ -21,6 +21,7 @@ public class BibliotecaApp {
         Scanner input = new Scanner(System.in);
 
         do {
+            loginUser();
             menuOptions();
             option = input.nextInt();
             switch (option){
@@ -69,6 +70,23 @@ public class BibliotecaApp {
         System.out.println("                  |     6 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
+
+    }
+
+    public static void loginUser() {
+
+        Scanner input = new Scanner(System.in);
+        String userName;
+        String password;
+        System.out.println("                    " +MESSAGE +"                 \n ");
+        System.out.println("                  ==========================");
+        System.out.println("                  |       User Name:       |");
+        System.out.println("                  =========================\n");
+        userName = input.nextLine();
+        System.out.println("                  ==========================");
+        System.out.println("                  |       Password:        |");
+        System.out.println("                  =========================\n");
+        password = input.nextLine();
 
     }
 

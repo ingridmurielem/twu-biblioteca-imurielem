@@ -2,6 +2,7 @@ package com.twu.biblioteca.repository;
 
 
 import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.service.SystemService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,5 +22,6 @@ public class UserRepositoryTest {
         assertEquals(expected,actual);
 
     }
+
 
 }

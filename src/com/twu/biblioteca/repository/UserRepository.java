@@ -12,7 +12,8 @@ public class UserRepository {
 
     public UserRepository() {
 
-        this.users = Arrays.asList(new User("Maria","maria@prov.com",99999999,"999-4444","9987"));
+        this.users = Arrays.asList(new User("Maria","maria@prov.com",99999999,"999-4444","9987"),
+                new User ("Joca","jj@prov.com",99999999,"999-4454","987"));
     }
 
     public List<User> listUser (){

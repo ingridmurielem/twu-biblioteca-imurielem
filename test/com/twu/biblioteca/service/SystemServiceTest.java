@@ -1,5 +1,6 @@
 package com.twu.biblioteca.service;
 
+import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,4 +23,12 @@ public class SystemServiceTest {
         int expected = 1;
         assertEquals(expected,actual);
     }
+    @Test
+    public void shouldTestIfReturnCorrectUser()
+    {
+        User actual = service.userInformation("999-4454","987");
+        User expected= new User ("Joca","jj@prov.com",99999999,"999-4454","987");
+        assertEquals(actual,expected);
+    }
+
 }

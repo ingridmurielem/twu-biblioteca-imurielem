@@ -34,6 +34,10 @@ public class BibliotecaApp {
             System.out.println("                  =========================\n");
             password = input.nextLine();
             validUser = loginService.userValidation(userName, password);
+            if ( validUser == 0)
+            {
+                System.out.println("Invalid User");
+            }
         }while (validUser != 1  );
 
         if ( validUser == 1) {
@@ -43,6 +47,9 @@ public class BibliotecaApp {
                 menuOptions();
                 option = input.nextInt();
                 switch (option) {
+                    case 0:
+                        loginService.printNameEmailPhoneAtUser(loginService.userInformation(userName,password));
+                        break;
                     case 1:
                         service.printNameBooks();
                         break;
@@ -82,6 +89,7 @@ public class BibliotecaApp {
     public static void menuOptions () {
 
         System.out.println("                  ==========================");
+        System.out.println("                  |     0 - Inf User        |");
         System.out.println("                  |     1 - List Books      |");
         System.out.println("                  |     2 - List Movies     |");
         System.out.println("                  |     3 - Check In Book   |");

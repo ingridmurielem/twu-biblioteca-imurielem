@@ -2,6 +2,7 @@ package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.Session;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
 
@@ -10,29 +11,33 @@ import java.util.List;
 
 public class LibraryService {
 
+    private static final String MESSAGECHEKINSUCESS = "Thank you %s! Enjoy the book %s";
+    private static final String MESSAGECHEKINUNSUCESS = "That book is not available";
+    private static final String MESSAGECHEKOUTSUCESS = "Thank you %s for returning the book %s.";
+    private static final String MESSAGECHEKOUTUNSUCESS = "That is not a valid book to return.";
+
+    private Session session;
     private BookRepository repository;
     private MovieRepository repositoryMovie;
-
 
     public LibraryService(BookRepository repository, MovieRepository repositoryMovie) {
         this.repository = repository;
         this.repositoryMovie =repositoryMovie;
+        this.session = Session.getInstance();
     }
-
-    private static final String MESSAGECHEKOUTSUCESS = "Thank you! Enjoy the book";
-    private static final String MESSAGECHEKOUTUNSUCESS = "That book is not available";
 
 
     public List<String> listAvalaibleBooks(){
-
         List<Book> books = repository.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
         for (Book book : books) {
             if (book.getCheckIn().equals("Available")){
                 bookNames.add(book.getBookName());
-            }}
+            }
+        }
         return bookNames;
     }
+
     public void printAvalaibleBooks(){
         List<String> books = listAvalaibleBooks();
         for (String name: books) {
@@ -50,15 +55,13 @@ public class LibraryService {
     public String checkInBook(String nameBook){
         List<Book>books = repository.listOfBookDetails();
         for (Book book : books){
-            if (book.getBookName().equals(nameBook)) {
-                if (book.getCheckIn().equals("Not Available")) {
-                    return MESSAGECHEKOUTUNSUCESS;
-                } else {
+            if (book.getBookName().toLowerCase().equals(nameBook.toLowerCase())) {
+                if (book.getCheckIn().equals("Available")) {
                     book.setCheckIn("Not Available");
-                    return MESSAGECHEKOUTSUCESS;
+                    return String.format(MESSAGECHEKINSUCESS, session.getUser().getName(), nameBook);
                 }
             }}
-        return MESSAGECHEKOUTUNSUCESS;
+        return MESSAGECHEKINUNSUCESS;
 
     }
     public String checkOutBook(String nameBook){
@@ -67,14 +70,11 @@ public class LibraryService {
             if (book.getBookName().equals(nameBook)) {
                 if (book.getCheckIn().equals("Not Available")) {
                     book.setCheckIn("Available");
-                    return "Thank you for returning the book.";
-                }else{
-                    return "That is not a valid book to return.";
+                    return String.format(MESSAGECHEKOUTSUCESS,session.getUser().getName());
                 }
-
             }
         }
-        return "That is not a valid book to return.";
+        return MESSAGECHEKOUTUNSUCESS;
     }
     public void printNameMovies() {
         List<Movie> movies = repositoryMovie.listMovies();

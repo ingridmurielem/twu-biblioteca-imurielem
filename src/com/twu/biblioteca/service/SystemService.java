@@ -8,34 +8,40 @@ import java.util.List;
 public class SystemService {
 
     private UserRepository repository;
-    // User Accounts - Login - As a librarian, I want to know who has checked out a book, so that I can hold them accountable for returning it.
-    // Users must now login using their library number (which is in the format xxx-xxxx) and a password in order to check-out and return books.
-    // User credentials are predefined, so registering new users is not part of this story.
 
     public SystemService( UserRepository repository){
         this.repository = repository;
     }
 
-    public int userValidation(String login, String password) {
+    public boolean login(String login, String password) {
+        User user = userValidation(login, password);
+
+        if (null != user) {
+         //   new Session (user,)  INICIAR SESSÃO
+            return true;
+        }
+        return false;
+    }
+
+    public User userValidation(String login, String password) {
         List <User> users = repository.listUser();
         for(User user: users){
             if(user.getLogin().equals(login) && user.getPassword().equals(password) ){
-                return 1;
+                return user;
         }
     }
-        return 0;
+        return null;
     }
 
 
     public User userInformation(String login, String password) {
         List <User> users = repository.listUser();
-        User userInvalid = new User(null, null, 0, null,null);
         for(User user: users){
             if(user.getLogin().equals(login) && user.getPassword().equals(password) ){
                return user;
             }
         }
-        return userInvalid;
+        return null;
 
     }
     public void printNameEmailPhoneAtUser(User user){

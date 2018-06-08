@@ -1,5 +1,7 @@
 package com.twu.biblioteca.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Book {
@@ -7,14 +9,18 @@ public class Book {
     private String authorName;
     private int yearPublished;
     private String checkIn;
+    private List<Historic> historic;
+
+
 
     public Book(String bookName, String authorName, int yearPublished, String checkIn) {
         this.bookName =bookName;
         this.authorName = authorName;
         this.yearPublished = yearPublished;
         this.checkIn = checkIn;
-    }
+        this.historic= new ArrayList <>();
 
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -24,14 +30,18 @@ public class Book {
         return yearPublished == book.yearPublished &&
                 Objects.equals(bookName, book.bookName) &&
                 Objects.equals(authorName, book.authorName) &&
-                Objects.equals(checkIn, book.checkIn);
+                Objects.equals(checkIn, book.checkIn) &&
+                Objects.equals(historic, book.historic);
+    }
 
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(bookName, authorName, yearPublished, checkIn);
+        return Objects.hash(bookName, authorName, yearPublished, checkIn, historic);
     }
 
     public String getBookName() {
@@ -60,7 +70,13 @@ public class Book {
 
     public String getCheckIn() { return checkIn; }
 
-    public void setCheckIn(String checkIn) { this.checkIn = checkIn; }
+    public List <Historic> getHistoric() {
+        return historic;
+    }
+
+    public void setHistoric(List <Historic> historic) {
+        this.historic = historic;
+    }
 
 
 }

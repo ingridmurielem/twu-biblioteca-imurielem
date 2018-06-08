@@ -17,7 +17,8 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         LibraryService service = new LibraryService(new BookRepository(), new MovieRepository());
         SystemService loginService = new SystemService(new UserRepository());
-        int option, validUser = 0;
+        int option;
+        Boolean validUser;
         String selectBook;
         String selectMovie;
         String userName;
@@ -33,14 +34,14 @@ public class BibliotecaApp {
             System.out.println("                  |       Password:        |");
             System.out.println("                  =========================\n");
             password = input.nextLine();
-            validUser = loginService.userValidation(userName, password);
-            if ( validUser == 0)
+            validUser = loginService.login(userName, password);
+            if ( validUser == false)
             {
                 System.out.println("Invalid User");
             }
-        }while (validUser != 1  );
+        }while (validUser != true  );
 
-        if ( validUser == 1) {
+        if ( validUser == true) {
 
             do {
                 Scanner input = new Scanner(System.in);

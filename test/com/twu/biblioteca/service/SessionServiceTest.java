@@ -8,30 +8,23 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-public class SystemServiceTest {
+public class SessionServiceTest {
 
-    private SystemService service;
+    private SessionService service;
     @Before
 
     public void setUp() {
-        service = new SystemService(new UserRepository());
+        service = new SessionService(new UserRepository());
     }
 
     @Test
     public void shouldTestIfUserIsValid(){
 
-        User actual = service.userValidation("999-4444", "9987");
-        User expected = new User("Maria","maria@prov.com",99999999,"999-4444","9987");
+        Boolean actual = service.login("999-4444", "9987");
+        Boolean expected = true;
         assertEquals(expected,actual);
     }
 
-    @Test
-    public void shouldTestIfReturnCorrectUser()
-    {
-        User actual = service.userInformation("999-4454","987");
-        User expected= new User ("Joca","jj@prov.com",99999999,"999-4454","987");
-        assertEquals(actual,expected);
-    }
 
    @Test
     public void shouldTestTrueIfUserValid(){

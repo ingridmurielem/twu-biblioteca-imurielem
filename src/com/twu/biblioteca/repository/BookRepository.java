@@ -11,15 +11,13 @@ public class BookRepository {
     private List<Book> books;
 
     public BookRepository() {
-        this.books =  Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887,"Available"),
-                new Book("TDD", "Celso", 2017,"Available"));
+        this.books =  Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887,true),
+                new Book("TDD", "Celso", 2017,true));
     }
 
     public List<Book> listOfBookDetails() {
         return books;
 
     }
-
-
 
 }

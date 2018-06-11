@@ -1,15 +1,16 @@
 package com.twu.biblioteca.service;
 
+import com.twu.biblioteca.model.Session;
 import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.repository.UserRepository;
 
 import java.util.List;
 
-public class SystemService {
+public class SessionService {
 
     private UserRepository repository;
 
-    public SystemService( UserRepository repository){
+    public SessionService(UserRepository repository){
         this.repository = repository;
     }
 
@@ -17,13 +18,13 @@ public class SystemService {
         User user = userValidation(login, password);
 
         if (null != user) {
-         //   new Session (user,)  INICIAR SESSÃO
+            Session.getInstance().setUser(user);
             return true;
         }
         return false;
     }
 
-    public User userValidation(String login, String password) {
+    private User userValidation(String login, String password) {
         List <User> users = repository.listUser();
         for(User user: users){
             if(user.getLogin().equals(login) && user.getPassword().equals(password) ){
@@ -34,20 +35,12 @@ public class SystemService {
     }
 
 
-    public User userInformation(String login, String password) {
-        List <User> users = repository.listUser();
-        for(User user: users){
-            if(user.getLogin().equals(login) && user.getPassword().equals(password) ){
-               return user;
-            }
+    public User getUserInformation() {
+        if (Session.getInstance().getUser() == null) {
+            throw new RuntimeException("User does not exists in session");
         }
-        return null;
 
+        return Session.getInstance().getUser();
     }
-    public void printNameEmailPhoneAtUser(User user){
-        System.out.println(user.getName());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPhoneNumber());
 
-    }
 }

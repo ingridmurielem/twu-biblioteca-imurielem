@@ -16,14 +16,12 @@ public class LibraryService {
     private static final String MESSAGECHEKOUTSUCESS = "Thank you %s for returning the book %s.";
     private static final String MESSAGECHEKOUTUNSUCESS = "That is not a valid book to return.";
 
-    private Session session;
     private BookRepository repository;
     private MovieRepository repositoryMovie;
 
     public LibraryService(BookRepository repository, MovieRepository repositoryMovie) {
         this.repository = repository;
         this.repositoryMovie =repositoryMovie;
-        this.session = Session.getInstance();
     }
 
 
@@ -31,7 +29,7 @@ public class LibraryService {
         List<Book> books = repository.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
         for (Book book : books) {
-            if (book.getCheckIn().equals("Available")){
+            if (book.isAvailable()){
                 bookNames.add(book.getBookName());
             }
         }
@@ -56,9 +54,9 @@ public class LibraryService {
         List<Book>books = repository.listOfBookDetails();
         for (Book book : books){
             if (book.getBookName().toLowerCase().equals(nameBook.toLowerCase())) {
-                if (book.getCheckIn().equals("Available")) {
-                    book.setCheckIn("Not Available");
-                    return String.format(MESSAGECHEKINSUCESS, session.getUser().getName(), nameBook);
+                if (book.isAvailable()) {
+                    book.rent(Session.getInstance().getUser());
+                    return String.format(MESSAGECHEKINSUCESS, Session.getInstance().getUser().getName(), nameBook);
                 }
             }}
         return MESSAGECHEKINUNSUCESS;
@@ -67,10 +65,10 @@ public class LibraryService {
     public String checkOutBook(String nameBook){
         List<Book>books = repository.listOfBookDetails();
         for (Book book: books){
-            if (book.getBookName().equals(nameBook)) {
-                if (book.getCheckIn().equals("Not Available")) {
-                    book.setCheckIn("Available");
-                    return String.format(MESSAGECHEKOUTSUCESS,session.getUser().getName());
+            if (book.getBookName().toLowerCase().equals(nameBook.toLowerCase())) {
+                if (! book.isAvailable()) {
+                    book.giveBack();
+                    return String.format(MESSAGECHEKOUTSUCESS, Session.getInstance().getUser().getName(), nameBook);
                 }
             }
         }

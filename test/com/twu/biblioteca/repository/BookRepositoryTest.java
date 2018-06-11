@@ -18,8 +18,8 @@ public class BookRepositoryTest {
     public void shouldTestListDetailsBooks() {
 
         List<Book> actualBooks = repository.listOfBookDetails();
-        List<Book> expectedBooks = Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887,"No"),
-                new Book("TDD", "Celso", 2017, "Yes"));
+        List<Book> expectedBooks = Arrays.asList(new Book("Moby-Dick", "Herman Melville", 1887,true),
+                new Book("TDD", "Celso", 2017, true));
         assertEquals(expectedBooks, actualBooks);
 
     }

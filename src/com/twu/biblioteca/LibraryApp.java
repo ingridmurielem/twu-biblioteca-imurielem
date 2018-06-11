@@ -1,24 +1,25 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
 import com.twu.biblioteca.repository.UserRepository;
 import com.twu.biblioteca.service.LibraryService;
-import com.twu.biblioteca.service.SystemService;
+import com.twu.biblioteca.service.SessionService;
 
 import java.util.Scanner;
 
-public class BibliotecaApp {
+public class LibraryApp {
 
     private static final String MESSAGE = "Welcome Library!";
     private static final String MESSAGEALERT = "Select a valid option!";
 
 
     public static void main(String[] args) {
+        SessionService sessionService = new SessionService(new UserRepository());
         LibraryService service = new LibraryService(new BookRepository(), new MovieRepository());
-        SystemService loginService = new SystemService(new UserRepository());
         int option;
-        Boolean validUser;
+        Boolean loggedUser;
         String selectBook;
         String selectMovie;
         String userName;
@@ -34,14 +35,13 @@ public class BibliotecaApp {
             System.out.println("                  |       Password:        |");
             System.out.println("                  =========================\n");
             password = input.nextLine();
-            validUser = loginService.login(userName, password);
-            if ( validUser == false)
-            {
+            loggedUser = sessionService.login(userName, password);
+            if (!loggedUser) {
                 System.out.println("Invalid User");
             }
-        }while (validUser != true  );
+        } while (!loggedUser);
 
-        if ( validUser == true) {
+        if (loggedUser) {
 
             do {
                 Scanner input = new Scanner(System.in);
@@ -49,7 +49,7 @@ public class BibliotecaApp {
                 option = input.nextInt();
                 switch (option) {
                     case 0:
-                        loginService.printNameEmailPhoneAtUser(loginService.userInformation(userName,password));
+                        LibraryApp.printNameEmailPhoneAtUser(sessionService.getUserInformation());
                         break;
                     case 1:
                         service.printNameBooks();
@@ -87,8 +87,8 @@ public class BibliotecaApp {
         }
 
     }
-    public static void menuOptions () {
 
+    private static void menuOptions() {
         System.out.println("                  ==========================");
         System.out.println("                  |     0 - Inf User        |");
         System.out.println("                  |     1 - List Books      |");
@@ -99,8 +99,11 @@ public class BibliotecaApp {
         System.out.println("                  |     6 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
-
     }
 
-
+    private static void printNameEmailPhoneAtUser(User user){
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPhoneNumber());
+    }
 }

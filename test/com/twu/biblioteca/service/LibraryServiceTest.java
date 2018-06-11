@@ -1,12 +1,11 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Session;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

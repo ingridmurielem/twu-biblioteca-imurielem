@@ -18,17 +18,17 @@ public class LibraryService {
     private static final String MESSAGECHEKINSUCESSMOVIE = "Have a good movie!";
     private static final String MESSAGECHEKINUNSUCESSMOVIE =  "That movie is not available";
 
-    private BookRepository repository;
+    private BookRepository repositoryBook;
     private MovieRepository repositoryMovie;
 
     public LibraryService(BookRepository repository, MovieRepository repositoryMovie) {
-        this.repository = repository;
+        this.repositoryBook = repository;
         this.repositoryMovie =repositoryMovie;
     }
 
 
     public List<String> listAvalaibleBooks(){
-        List<Book> books = repository.listOfBookDetails();
+        List<Book> books = repositoryBook.listOfBookDetails();
         List<String> bookNames = new ArrayList<>();
         for (Book book : books) {
             if (book.isAvailable()){
@@ -47,13 +47,13 @@ public class LibraryService {
     }
 
     public void printNameBooks() {
-        List<Book> books = repository.listOfBookDetails();
+        List<Book> books = repositoryBook.listOfBookDetails();
         for (Book book: books) {
             System.out.println("Book Name: " + book.getBookName());
         }
     }
     public String checkInBook(String nameBook){
-        List<Book>books = repository.listOfBookDetails();
+        List<Book>books = repositoryBook.listOfBookDetails();
         for (Book book : books){
             if (book.getBookName().toLowerCase().equals(nameBook.toLowerCase())) {
                 if (book.isAvailable()) {
@@ -65,7 +65,7 @@ public class LibraryService {
 
     }
     public String checkOutBook(String nameBook){
-        List<Book>books = repository.listOfBookDetails();
+        List<Book>books = repositoryBook.listOfBookDetails();
         for (Book book: books){
             if (book.getBookName().toLowerCase().equals(nameBook.toLowerCase())) {
                 if (! book.isAvailable()) {
@@ -96,7 +96,17 @@ public class LibraryService {
             }
     }
         return MESSAGECHEKINUNSUCESSMOVIE;
-
-
 }
+    public String checkOutMovie(String nameMovie){
+        List<Movie>movies = repositoryMovie.listMovies();
+        for (Movie movie: movies){
+            if (movie.getMovieName().toLowerCase().equals(nameMovie.toLowerCase())) {
+                if (! movie.isAvailable()) {
+                    movie.giveBack();
+                    return String.format(MESSAGECHEKOUTSUCESS, Session.getInstance().getUser().getName(), nameMovie);
+                }
+            }
+        }
+        return MESSAGECHEKOUTUNSUCESS;
+    }
 }

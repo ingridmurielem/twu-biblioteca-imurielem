@@ -78,13 +78,18 @@ public class LibraryApp {
                         selectMovie = input.nextLine();
                         System.out.println(service.checkInMovie(selectMovie));
                     case 6:
+                        System.out.println("Name Book:");
+                        input = new Scanner(System.in);
+                        selectMovie = input.nextLine();
+                        System.out.println(service.checkOutMovie(selectMovie));
+                    case 8:
                         break;
                     default:
                         System.out.println(MESSAGEALERT);
                         break;
 
                 }
-            } while (option != 6);
+            } while (option != 8);
 
         }
 
@@ -98,7 +103,8 @@ public class LibraryApp {
         System.out.println("                  |     3 - Check In Book   |");
         System.out.println("                  |     4 - Return Book     |");
         System.out.println("                  |     5 - Check In Movie  |");
-        System.out.println("                  |     6 - Quit            |");
+        System.out.println("                  |     6 - Return Movie    |");
+        System.out.println("                  |     8 - Quit            |");
         System.out.println("                  |     Option:             |");
         System.out.println("                  =========================\n");
     }

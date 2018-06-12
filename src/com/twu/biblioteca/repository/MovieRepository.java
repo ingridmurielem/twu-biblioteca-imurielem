@@ -8,7 +8,7 @@ public class MovieRepository {
     private List<Movie> movies;
 
     public MovieRepository(){
-        this.movies= Arrays.asList(new Movie("João",2008,"Machado",9,true),
+        this.movies= Arrays.asList(new Movie("The Avangers",2008,"Machado",9,true),
                 new Movie("Star Wars: The Clone Wars",2008,"Daniel", 10,true),
                 new Movie("Lagom",2009,"David", 23,true));
     }

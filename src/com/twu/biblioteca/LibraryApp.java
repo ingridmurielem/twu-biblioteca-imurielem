@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
@@ -7,6 +8,7 @@ import com.twu.biblioteca.repository.UserRepository;
 import com.twu.biblioteca.service.LibraryService;
 import com.twu.biblioteca.service.SessionService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LibraryApp {
@@ -106,4 +108,6 @@ public class LibraryApp {
         System.out.println(user.getEmail());
         System.out.println(user.getPhoneNumber());
     }
+
+
 }

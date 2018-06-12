@@ -15,6 +15,8 @@ public class LibraryService {
     private static final String MESSAGECHEKINUNSUCESS = "That book is not available";
     private static final String MESSAGECHEKOUTSUCESS = "Thank you %s for returning the book %s.";
     private static final String MESSAGECHEKOUTUNSUCESS = "That is not a valid book to return.";
+    private static final String MESSAGECHEKINSUCESSMOVIE = "Have a good movie!";
+    private static final String MESSAGECHEKINUNSUCESSMOVIE =  "That movie is not available";
 
     private BookRepository repository;
     private MovieRepository repositoryMovie;
@@ -76,8 +78,8 @@ public class LibraryService {
     }
     public void printNameMovies() {
         List<Movie> movies = repositoryMovie.listMovies();
-        for (Movie book: movies) {
-            System.out.println("Book Name: " + book.getMovieName());
+        for (Movie movie: movies) {
+            System.out.println("Movie Name: " + movie.getMovieName());
         }
     }
 
@@ -85,18 +87,16 @@ public class LibraryService {
     public String checkInMovie(String nameMovie) {
         List<Movie> movies = repositoryMovie.listMovies();
         for(Movie movie: movies){
-            if(movie.getMovieName().equals(nameMovie)){
-                if(movie.getAvailable().equals(false)){
-                    return "Not Available";
-                }else{
-                    movie.setAvailable(false);
-                    return "Have a good movie!";
+            if(movie.getMovieName().toLowerCase().equals(nameMovie)){
+                if(movie.isAvailable()){
+                    movie.rent(Session.getInstance().getUser());
+                    return MESSAGECHEKINSUCESSMOVIE;
                 }
 
             }
-        }
-        return "Not exist the movie";
     }
+        return MESSAGECHEKINUNSUCESSMOVIE;
 
 
+}
 }

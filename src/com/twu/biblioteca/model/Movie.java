@@ -1,5 +1,7 @@
 package com.twu.biblioteca.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Movie {
@@ -8,33 +10,7 @@ public class Movie {
     private String directorName;
     private int movieRating;
     private Boolean available;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
-        return year == movie.year &&
-                Objects.equals(movieName, movie.movieName) &&
-                Objects.equals(directorName, movie.directorName) &&
-                Objects.equals(movieRating, movie.movieRating);
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
-
-    @Override
-
-    public int hashCode() {
-
-        return Objects.hash(movieName, year, directorName, movieRating);
-    }
-
+    private List<Historic> historic;
 
 
     public Movie(String movieName, int year, String directorName, int movieRating, Boolean available) {
@@ -43,6 +19,7 @@ public class Movie {
         this.directorName = directorName;
         this.movieRating = movieRating;
         this.available= available;
+        this.historic= new ArrayList<>();
     }
 
     public String getMovieName() {
@@ -75,5 +52,55 @@ public class Movie {
 
     public void setMovieRating(int movieRating) {
         this.movieRating = movieRating;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+
+    public List <Historic> getHistoric() {
+        return historic;
+    }
+
+    public void setHistoric(List <Historic> historic) {
+        this.historic = historic;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return year == movie.year &&
+                movieRating == movie.movieRating &&
+                Objects.equals(movieName, movie.movieName) &&
+                Objects.equals(directorName, movie.directorName) &&
+                Objects.equals(available, movie.available) &&
+                Objects.equals(historic, movie.historic);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(movieName, year, directorName, movieRating, available, historic);
+    }
+    public void rent(User user) {
+        this.available = false;
+        this.historic.add(new Historic(user));
+    }
+
+    public void giveBack() {
+        this.available = true;
+    }
+
+    public Boolean isAvailable(){
+        if(available){
+            return true;
+        }
+        return false;
     }
 }
